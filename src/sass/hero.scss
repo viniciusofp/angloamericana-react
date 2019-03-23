@@ -1,0 +1,106 @@
+.hero {
+  position: relative;
+  background-image: url("./assets/ibirapuera.jpg");
+  background-size: cover;
+  background-position: 50% 30%;
+  height: 500px;
+}
+.hero__wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 700px;
+  max-width: calc(100% - 30px);
+  text-align: center;
+  h1 {
+    color: $white;
+    font-size: 36px;
+    font-weight: 700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.hero__form {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  select,
+  button {
+    font-weight: 700;
+    cursor: pointer;
+  }
+  select:hover {
+    color: $red;
+  }
+}
+
+.hero__buscarCodigo {
+  color: white;
+  transition: 0.2s;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  &:hover {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+  }
+}
+
+.cadastre_row {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background: $lightGray;
+  margin-bottom: 45px;
+  p {
+    margin-bottom: 0;
+  }
+  strong {
+    color: $blue;
+  }
+  button {
+    margin-left: 10px;
+    font-weight: 700;
+    color: $blue;
+    &:hover {
+      color: $red;
+      background: $white;
+      border-color: $red;
+    }
+  }
+}
+
+@media all and (max-width: 991px) {
+  .cadastre_row {
+    text-align: center;
+    button.btn {
+      margin-top: 15px;
+    }
+  }
+}
+@media all and (max-width: 767px) {
+  .hero__wrapper {
+    h1 {
+      font-size: 28px;
+    }
+  }
+  .input-group {
+    width: 300px;
+    margin: 15px auto;
+    select.custom-select,
+    .input-group-append,
+    button.btn {
+      display: block;
+      width: 300px;
+      max-width: 100%;
+      flex: none;
+      border-radius: 0;
+      margin: 0;
+    }
+    select.custom-select:first-child {
+      margin-left: -1px;
+      border-radius: 5px 5px 0 0;
+    }
+    button.btn {
+      border-radius: 0 0 5px 5px;
+    }
+  }
+}
