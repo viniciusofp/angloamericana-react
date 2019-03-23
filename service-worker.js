@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/angloamericana-react/precache-manifest.82fb716f6bb4da968b5a36b2f1d301c1.js"
+  "/angloamericana-react/precache-manifest.efda63f6b16df5e56ebc135ad47ed31c.js"
 );
 
 workbox.clientsClaim();
