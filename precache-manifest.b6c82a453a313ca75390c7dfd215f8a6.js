@@ -1,10 +1,10 @@
 self.__precacheManifest = [
   {
-    "revision": "09c769eeacc29e238bb3",
-    "url": "/angloamericana-react/static/css/main.7296da5e.chunk.css"
+    "revision": "b86baf9e924c9155c6f2",
+    "url": "/angloamericana-react/static/css/main.a02be90e.chunk.css"
   },
   {
-    "revision": "09c769eeacc29e238bb3",
+    "revision": "b86baf9e924c9155c6f2",
     "url": "/angloamericana-react/static/js/main.95fef281.chunk.js"
   },
   {
@@ -64,7 +64,7 @@ self.__precacheManifest = [
     "url": "/angloamericana-react/static/media/condominioclube.bfaba7b8.jpeg"
   },
   {
-    "revision": "3da9ea938a56904be8a06c06a8d9f0af",
+    "revision": "cb1ea197f53c85b8a1227e77596c1fa9",
     "url": "/angloamericana-react/index.html"
   }
 ];
