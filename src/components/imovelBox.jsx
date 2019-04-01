@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { baseUrl, key } from "../config";
 import _ from "lodash";
+import { Link } from "react-router-dom";
 // Font Awesome
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,15 +14,27 @@ class ImovelBox extends Component {
     photos: [],
     photo: "",
     currentPhoto: 0,
-    photosLength: 0
+    photosLength: 0,
+    content: {
+      pt: {
+        quartos: "Quartos",
+        vagas: "Vagas",
+        status: "",
+        tipo: ""
+      },
+      en: {
+        quartos: "Bedrooms",
+        vagas: "Parking Spaces",
+        status: "",
+        tipo: ""
+      }
+    }
   };
   _handlePhotoChange = async (codigo, direction) => {
     if (this.state.photos.length === 0) {
       await this._fetchPhotos(codigo);
     }
-
     let currentPhoto = 0;
-
     if (direction === "next") {
       this.state.currentPhoto === this.state.photosLength - 1
         ? (currentPhoto = 0)
@@ -31,7 +44,6 @@ class ImovelBox extends Component {
         ? (currentPhoto = this.state.photosLength - 1)
         : (currentPhoto = this.state.currentPhoto - 1);
     }
-    console.log(this.state.photosLength, this.state.currentPhoto, currentPhoto);
     const photo = this.state.photos[currentPhoto].Foto;
     this.setState({
       currentPhoto,
@@ -49,17 +61,50 @@ class ImovelBox extends Component {
       const sortedPhotos = _.sortBy(photos, function(photo) {
         return photo.Foto === destaque ? 0 : 1;
       });
-      console.log(destaque, photos, sortedPhotos);
       this.setState({ photos: sortedPhotos, photosLength: photos.length });
     } else {
       return;
     }
   };
   componentDidMount() {
-    this.setState({ photo: this.props.imovel.FotoDestaque });
+    const content = { ...this.state.content };
+    let status = "";
+    let tipo = "";
+    this.props.valorProp === "ValorVenda"
+      ? (status = "Venda")
+      : (status = "Locação");
+    content.pt.status = status;
+    this.props.valorProp === "ValorVenda"
+      ? (status = "Sale")
+      : (status = "Rent");
+    content.en.status = status;
+
+    if (this.props.imovel.Categoria === "Apartamento") {
+      content.pt.tipo = "Apartamento";
+      content.en.tipo = "Apartment";
+    } else if (this.props.imovel.Categoria === "Casa") {
+      content.pt.tipo = "Casa";
+      content.en.tipo = "House";
+    } else if (this.props.imovel.Categoria === "Cobertura") {
+      content.pt.tipo = "Cobertura";
+      content.en.tipo = "Penthouse";
+    }
+    this.setState({ content, photo: this.props.imovel.FotoDestaque });
   }
   render() {
-    const { imovel, i, status, valorProp } = this.props;
+    const { imovel, i, status, valorProp, lang } = this.props;
+    const { content } = this.state;
+    function slugify(text) {
+      return text
+        .toString()
+        .toLowerCase()
+        .replace(/\s+/g, "_") // Replace spaces with -
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\-\-+/g, "_") // Replace multiple - with single -
+        .replace(/^-+/, "") // Trim - from start of text
+        .replace(/-+$/, ""); // Trim - from end of text
+    }
     return (
       <div
         key={`imoveldestaque${status}${imovel.Codigo}`}
@@ -71,7 +116,13 @@ class ImovelBox extends Component {
       >
         <div className="imovel_box">
           <div className="imovel_box__imagem">
-            <img src={this.state.photo} alt="" />
+            <Link
+              to={`/imovel/${slugify(imovel.Categoria)}_${slugify(
+                imovel.Bairro
+              )}/${imovel.Codigo}`}
+            >
+              <img src={this.state.photo} alt="" />
+            </Link>
             <div
               className="imovel_box__imagem-previous"
               onMouseEnter={() => this._fetchPhotos(imovel.Codigo)}
@@ -88,26 +139,35 @@ class ImovelBox extends Component {
             </div>
           </div>
 
-          <div className="imovel_box__meta">
-            <h3>{imovel.Bairro}</h3>
-            <p>{imovel.Categoria}</p>
-            <div className="imovel_box__valor">
-              <small>{status}</small>
-              <br />
-              {new Intl.NumberFormat("pt-BR", {
-                style: "currency",
-                currency: "BRL"
-              }).format(imovel[valorProp])}
+          <Link
+            to={`/imovel/${slugify(imovel.Categoria)}_${slugify(
+              imovel.Bairro
+            )}/${imovel.Codigo}`}
+          >
+            <div className="imovel_box__meta">
+              <h3>{imovel.Bairro}</h3>
+              <p>{content[lang].tipo}</p>
+              <div className="imovel_box__valor">
+                <small>{content[lang].status}</small>
+                <br />
+                {new Intl.NumberFormat("pt-BR", {
+                  style: "currency",
+                  currency: "BRL"
+                }).format(imovel[valorProp])}
+              </div>
+              <p className="imovel_box__caracteristicas">
+                <FontAwesomeIcon icon={["fas", "bed"]} className="mr-1" />
+                {imovel.Dormitorios} {content[lang].quartos}
+                <FontAwesomeIcon icon={["fas", "car"]} className="mr-1 ml-3" />
+                {imovel.Vagas} {content[lang].vagas}
+                <FontAwesomeIcon
+                  icon={["fas", "expand"]}
+                  className="mr-1 ml-3"
+                />
+                {imovel.AreaPrivativa}m²
+              </p>
             </div>
-            <p className="imovel_box__caracteristicas">
-              <FontAwesomeIcon icon={["fas", "bed"]} className="mr-1" />
-              {imovel.Dormitorios} Quartos
-              <FontAwesomeIcon icon={["fas", "car"]} className="mr-1 ml-3" />
-              {imovel.Vagas} Vagas
-              <FontAwesomeIcon icon={["fas", "expand"]} className="mr-1 ml-3" />
-              {imovel.AreaTotal}m²
-            </p>
-          </div>
+          </Link>
         </div>
       </div>
     );

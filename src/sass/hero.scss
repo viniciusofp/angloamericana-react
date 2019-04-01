@@ -42,6 +42,33 @@
   &:hover {
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.75);
+    span {
+      border-bottom: 1px solid $white;
+    }
+  }
+}
+
+.hero__buscarCodigo_form {
+  opacity: 0;
+  pointer-events: none;
+  width: 200px;
+  position: absolute;
+  left: 50%;
+  bottom: -55px;
+  transform: translate(-50%, 0);
+  transition: 0.2s;
+  &.active {
+    opacity: 1;
+    pointer-events: all;
+    bottom: -35px;
+  }
+  .btn-secondary {
+    background: $lightGray;
+    border-color: #ced4da;
+    color: $black;
+    &:hover {
+      color: $red;
+    }
   }
 }
 
@@ -82,7 +109,8 @@
       font-size: 28px;
     }
   }
-  .input-group {
+
+  .hero__form.input-group {
     width: 300px;
     margin: 15px auto;
     select.custom-select,
@@ -96,7 +124,6 @@
       margin: 0;
     }
     select.custom-select:first-child {
-      margin-left: -1px;
       border-radius: 5px 5px 0 0;
     }
     button.btn {

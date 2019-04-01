@@ -1,5 +1,6 @@
 {
   "name": "angloamericana",
+  "homepage": "https://viniciusofp.github.io/angloamericana-react",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -9,16 +10,24 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "axios": "^0.18.0",
     "bootstrap": "^4.3.1",
+    "drag-scroll-provider": "^1.0.6",
+    "fs": "^0.0.1-security",
+    "gh-pages": "^2.0.1",
     "lodash": "^4.17.11",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
+    "react-dragscroll": "^2.0.1",
+    "react-google-recaptcha": "^1.0.5",
+    "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": "react-app"

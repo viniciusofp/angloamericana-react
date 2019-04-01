@@ -1,0 +1,113 @@
+.home__destaques {
+  margin-top: 30px;
+}
+.home__segmentacoes {
+  position: relative;
+  margin-top: 30px;
+}
+
+.home__segmentacoes-coberturas,
+.home__segmentacoes-condominio,
+.home__segmentacoes-mobiliados,
+.home__segmentacoes-reforma {
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 30px;
+}
+.home__segmentacoes-coberturas,
+.home__segmentacoes-condominio {
+  height: 360px;
+}
+.home__segmentacoes-mobiliados,
+.home__segmentacoes-reforma {
+  height: 180px;
+}
+.home__segmentacoes-coberturas {
+  background-image: url("assets/cobertura.jpg");
+}
+.home__segmentacoes-condominio {
+  background-image: url("assets/condominioclube.jpeg");
+}
+.home__segmentacoes-mobiliados {
+  background-image: url("assets/mobiliado.jpg");
+}
+.home__segmentacoes-reforma {
+  background-image: url("assets/reforma.jpg");
+}
+
+.home__segmentacoes-button {
+  background: $white;
+  border: 1px solid $lightGray;
+  color: $red;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.home__about {
+  background: $white;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  color: #888;
+  h2 {
+    font-size: 28px;
+    color: $red;
+    font-weight: 700;
+  }
+  h3 {
+    font-size: 28px;
+    font-weight: 700;
+  }
+  .lead {
+    font-size: 18px;
+  }
+}
+
+.home__about_mapa {
+  color: white;
+  max-width: 360px;
+  padding: 30px;
+}
+
+.home__about_slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 66.66%;
+}
+
+.home__about_slider-slide {
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: 1s;
+}
+
+.home__about_slider-slide-active {
+  opacity: 1;
+}
+
+.home__buscaBairro {
+  padding-bottom: 60px;
+  padding-top: 60px;
+  h3 {
+    font-size: 22px;
+    color: $red;
+    font-weight: 700;
+    margin-bottom: 15px;
+  }
+  p {
+    font-size: 13px;
+    color: #888;
+    transition: 0.2s;
+    margin-bottom: 5px;
+    cursor: pointer;
+    &:hover {
+      color: $red;
+    }
+  }
+}

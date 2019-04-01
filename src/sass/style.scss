@@ -1,5 +1,5 @@
 @import "../../node_modules/bootstrap/scss/bootstrap.scss";
-@import url("https://fonts.googleapis.com/css?family=Nunito:400,600,700");
+@import url("https://fonts.googleapis.com/css?family=Nunito:400,700");
 
 // Colors
 $white: #f8f8f8;
@@ -26,6 +26,15 @@ a {
   }
 }
 
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.btn {
+  font-weight: 700;
+}
+
 .btn-danger {
   background: $red;
   border-color: $darkRed;
@@ -43,167 +52,198 @@ a {
 
 @import "hero";
 
-.cadastre_row {
-  padding-top: 15px;
-  padding-bottom: 15px;
-  background: $lightGray;
-  p {
-    margin-bottom: 0;
+@import "home";
+
+@import "imovelBox";
+
+.footer {
+  padding-top: 60px;
+  padding-bottom: 60px;
+  background-image: url("./assets/footerbg.jpg");
+  background-size: cover;
+  background-position: center;
+  color: $white;
+}
+
+.footer__menu {
+  font-weight: 700;
+  li {
+    transition: 0.2s;
   }
-  strong {
-    color: $blue;
-  }
-  button {
-    margin-left: 10px;
-    font-weight: 700;
-    color: $blue;
-    &:hover {
-      color: $red;
-      background: $white;
-      border-color: $red;
-    }
+  li:hover {
+    color: white;
+    padding-left: 5px;
   }
 }
 
-.home__destaques {
-  margin-top: 30px;
+.footer__social {
+  span {
+    border-top: 1px solid $white;
+    padding-top: 15px;
+  }
+  svg {
+    margin-right: 15px;
+  }
 }
 
-.imovel_box {
-  position: relative;
-  background: #fff;
-  border-radius: 5px;
-  border: 1px solid $lightGray;
+.footer__contact {
+  font-size: 14px;
+}
+
+.imovel {
+  margin-top: 15px;
   margin-bottom: 30px;
-  cursor: pointer;
-  overflow: hidden;
-  img {
-    width: 100%;
-    height: auto;
+  h1 {
+    color: $blue;
+    font-weight: 700;
+    font-size: 28px;
   }
-  &:hover {
-    .imovel_box__meta {
-      background: $white;
-      h3 {
-        color: $red;
-      }
+  h3 {
+    font-weight: 700;
+    font-size: 18px;
+    margin-bottom: 15px;
+    margin-top: 30px;
+    img {
+      margin-right: 10px;
+      margin-top: -8px;
     }
   }
+  small {
+    color: #888;
+    display: block;
+    margin-top: -10px;
+    margin-bottom: 15px;
+  }
 }
-.imovel_box__imagem {
-  position: relative;
-  overflow: hidden;
+
+.imovel__fotoDestaque {
   width: 100%;
-  padding-bottom: 66.6%;
+  padding-bottom: 66.66%;
+  overflow: hidden;
+  position: relative;
+  background: $white;
+  -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+  -moz-user-select: none; /* mozilla browsers */
+  -khtml-user-select: none; /* webkit (konqueror) browsers */
+  -ms-user-select: none; /* IE10+ */
   img {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100%;
+    height: 100%;
   }
 }
-.imovel_box__meta {
+.imovel__slider {
+  margin-top: 5px;
+  margin-bottom: 15px;
+  width: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  &::-webkit-scrollbar {
+    display: none;
+    opacity: 0;
+    height: 0;
+  }
+}
+.imovel__slider_slide {
+  flex: 0 0 auto;
+  width: 120px;
+  height: 78px;
+  margin-right: 5px;
   position: relative;
-  padding: 15px 15px 15px;
-
-  h3 {
-    color: $blue;
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: 3px;
-  }
-  svg {
-    color: $red;
-  }
-}
-
-.imovel_box__caracteristicas {
-  margin-bottom: 0;
-  border-top: 1px solid $lightGray;
-  padding-top: 15px;
-  text-align: center;
-}
-
-.imovel_box__valor {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  text-align: right;
-  font-weight: 700;
-  small {
-    font-weight: 400;
-    color: $darkGray;
-    text-transform: uppercase;
-  }
-}
-
-.imovel_box__imagem {
-  position: relative;
-}
-
-.imovel_box__imagem-next,
-.imovel_box__imagem-previous {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: $white;
-  border-radius: 100%;
-  height: 24px;
-  width: 24px;
-  text-align: center;
-  color: $blue;
   cursor: pointer;
-  border: 1px solid $lightGray;
-  z-index: 2;
-  &:hover {
-    background: $lightGray;
+  &:hover img {
+    opacity: 1;
+  }
+  img {
+    -webkit-user-select: none; /* webkit (safari, chrome) browsers */
+    -moz-user-select: none; /* mozilla browsers */
+    -khtml-user-select: none; /* webkit (konqueror) browsers */
+    -ms-user-select: none; /* IE10+ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: auto;
+    opacity: 0.5;
+    transition: 0.2s;
+    pointer-events: none;
+    &.active {
+      opacity: 1;
+    }
+  }
+}
+
+.imovel__caracteristicas {
+  svg {
     color: $red;
   }
 }
-.imovel_box__imagem-next {
-  right: 15px;
-  svg {
-    transform: translate(1px, -1px);
+.imovel__descricao_trigger {
+  color: $red;
+  font-weight: 700;
+  cursor: pointer;
+}
+.imovel__descricao_container {
+  height: 50px;
+  overflow: hidden;
+  p {
+    margin-bottom: 5px;
+  }
+  &.open {
+    height: auto;
   }
 }
 
-.imovel_box__imagem-previous {
-  left: 15px;
-  svg {
-    transform: translate(-1px, -1px);
+.imovel__infra {
+  margin-bottom: 15px;
+  ul {
+    padding-left: 20px;
+    list-style: none;
+    margin-bottom: 0;
+  }
+  ul li::before {
+    content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+    color: $red; /* Change the color */
+    font-weight: bold; /* If you want it to be bold */
+    display: inline-block; /* Needed to add space between the bullet and the text */
+    width: 1em; /* Also needed for space (tweak if needed) */
+    margin-left: -1em; /* Also needed for space (tweak if needed) */
+  }
+}
+.imovel__infra_item {
+  display: inline-block;
+  border: 1px solid $lightGray;
+  border-radius: 5px;
+  padding: 6px 10px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.imovel__contato {
+  top: 30px;
+  margin-bottom: 15px;
+  background: $white;
+  border: 1px solid $lightGray;
+  border-radius: 5px;
+  padding: 15px;
+  h4 {
+    font-weight: 700;
+    font-size: 20px;
+    color: $blue;
+  }
+  .form-control {
+    margin-bottom: 10px;
+    margin-top: 10px;
   }
 }
 
-.home__segmentacoes {
-  margin-top: 30px;
-}
-
-.home__segmentacoes-coberturas,
-.home__segmentacoes-condominio,
-.home__segmentacoes-mobiliados,
-.home__segmentacoes-reforma {
-  background-position: center;
-  background-size: cover;
-  margin-bottom: 30px;
-}
-.home__segmentacoes-coberturas,
-.home__segmentacoes-condominio {
-  height: 360px;
-}
-.home__segmentacoes-mobiliados,
-.home__segmentacoes-reforma {
-  height: 180px;
-}
-.home__segmentacoes-coberturas {
-  background-image: url("assets/cobertura.jpg");
-}
-.home__segmentacoes-condominio {
-  background-image: url("assets/condominioclube.jpeg");
-}
-.home__segmentacoes-mobiliados {
-  background-image: url("assets/mobiliado.jpg");
-}
-.home__segmentacoes-reforma {
-  background-image: url("assets/reforma.jpg");
+.recaptchaContainer {
+  transform: scale(0.74);
+  transform-origin: 0 0;
 }
